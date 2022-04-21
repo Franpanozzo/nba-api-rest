@@ -1,9 +1,9 @@
-// const express = require('express');
+const express = require('express');
 
-// const api = express.Router();
+const teamsRouter = require('./teams/teams.router');
 
-// api.use('/', (req, res) => {
-//   res.json({
-//     check: 'All good'
-//   })
-// })
+const api = express.Router();
+
+api.use('/teams', teamsRouter)
+
+module.exports = api

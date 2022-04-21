@@ -9,11 +9,6 @@ app.use(morgan('combined'));
 
 app.use(express.json());
 
-// app.use('/v1', api);
-app.get('/', (req, res) => {
-  res.json({
-    check: 'All good'
-  })
-});
+app.use('/v1', api);
 
 module.exports = app;
