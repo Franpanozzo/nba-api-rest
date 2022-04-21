@@ -1,0 +1,27 @@
+name: NBA API REST CI
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    types: closed
+    branches: [ main ]
+jobs: 
+  build:
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js Version ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+        
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
