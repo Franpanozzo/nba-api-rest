@@ -1,18 +1,43 @@
+const axios = require('axios');
+
+const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/teams'
+
 const teams = [
   {
-  id: 1,
-  abbreviation: "ATL",
-  city: "Atlanta",
-  conference: "East",
-  division: "Southeast",
-  full_name: "Atlanta Hawks",
-  name: "Hawks"
+    id: 1,
+    abbreviation: "ATL",
+    city: "Atlanta",
+    conference: "East",
+    division: "Southeast",
+    full_name: "Atlanta Hawks",
+    name: "Hawks"
+  },
+  {
+    id: 23,
+    abbreviation: "PHI",
+    city: "Philadelphia",
+    conference: "East",
+    division: "Atlantic",
+    full_name: "Philadelphia 76ers",
+    name: "76ers"
   }
 ];
 
-function getAllTeams() {
-  return teams;
+async function getAllTeams() {
+  const response = await axios.get(BALL_DONT_LIE_URL);
+  console.log(response.data.data);
+  const respuesta = response.data.data;
+  
+  if(response.status !== 200) {
+    console.log('Error with axios request:', response);
+    throw new Error('Teams data download failed');
+  }
+  return respuesta;
 }
+
+// async function loadTeamsData() {
+
+// }
 
 module.exports = {
   getAllTeams

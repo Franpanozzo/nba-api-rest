@@ -1,7 +1,7 @@
 const { getAllTeams } = require('../../models/teams.model');
 
-function httpGetAllTeams(req, res) {
-  res.status(200).json(getAllTeams());
+async function httpGetAllTeams(req, res) {
+  res.status(200).json(await getAllTeams());
 }
 
 module.exports = {

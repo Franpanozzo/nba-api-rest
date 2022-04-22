@@ -8,7 +8,7 @@ describe('Teams API', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const firstTeam = response.body.pop();
+    const firstTeam = response.body.shift();
     expect(firstTeam.name).toBe('Hawks');
   }) 
 });
