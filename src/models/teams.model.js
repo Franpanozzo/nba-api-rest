@@ -24,10 +24,15 @@ const teams = [
 ];
 
 async function getAllTeams() {
-  const response = await axios.get(BALL_DONT_LIE_URL)
-  // console.log('ESTA ES LA RESPUESTA',response.data.data);
-
-  return response.data.data;
+  const response = await axios.get(BALL_DONT_LIE_URL);
+  console.log(response.data.data);
+  const respuesta = response.data.data;
+  
+  if(response.status !== 200) {
+    console.log('Error with axios request:', response);
+    throw new Error('Teams data download failed');
+  }
+  return respuesta;
 }
 
 // async function loadTeamsData() {
