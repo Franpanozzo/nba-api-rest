@@ -8,12 +8,12 @@ mongoose.connection.once('error', (err) => {
   console.log(err);
 });
 
-async function mongoConnect(mongoUrl) {
-  await mongoose.connect(mongoUrl);
+async function mongoConnect() {
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
-async function mongoDisconnect(mongoUrl) {
-  await mongoose.disconnect(mongoUrl);
+async function mongoDisconnect() {
+  await mongoose.disconnect(process.env.MONGO_URL);
 }
 
 module.exports = {

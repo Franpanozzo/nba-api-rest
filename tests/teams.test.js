@@ -9,14 +9,16 @@ const {
 
 require('dotenv').config();
 
+jest.setTimeout(100000);
+
 describe('Teams API', () => {
   beforeAll(async () => {
-    await mongoConnect(process.env.MONGO_URL);
+    await mongoConnect();
     await loadTeamsData();
   });
 
   afterAll(async () => {
-    await mongoDisconnect(process.env.MONGO_URL);
+    await mongoDisconnect();
   })
   
   test('GET /teams should respond status 200', async () => {
@@ -25,8 +27,8 @@ describe('Teams API', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const firstTeam = response.body.shift();
-    expect(firstTeam.name).toBe('Hawks');
+    const teams = response.body;
+    expect(teams.length).toBe(30);
   }); 
 
   test('GET /teams/3 should respond with the Nets', async () => {
@@ -40,6 +42,6 @@ describe('Teams API', () => {
   })
  });
 
-describe('Teams model', () => {
+// describe('Teams model', () => {
 
-});
+// });

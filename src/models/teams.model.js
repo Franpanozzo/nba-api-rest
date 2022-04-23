@@ -49,6 +49,7 @@ async function mapTeam(teamDoc) {
     conference: teamDoc.conference,
     division: teamDoc.division,
     full_name: teamDoc.full_name,
+    name: teamDoc.name
   }
 
   await saveTeam(team);
