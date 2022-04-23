@@ -11,14 +11,26 @@ const {
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/players'
 
 
-async function getAllPlayers(skip, limit) {
-  return await getAllObjects(playersDatabase, 'playerId', skip, limit);
+async function getAllPlayers(skip, limit, search) {
+  let filter;
+  if(search) { // If the user inserts to search by the last or first name we create the filter
+    searchRegex = new RegExp(search);
+    filter = {
+      $or: [
+        { first_name: searchRegex },
+        { last_name: searchRegex }
+      ]
+    }
+  } else {
+    filter = {}
+  }
+
+  return await getAllObjects(playersDatabase, filter , 'playerId', skip, limit);
 }
 
 async function loadPlayersData() {
   const player = await findPlayer({  //If its already loaded dont papulate it again
-    first_name: 'Ja',
-    last_name: 'Morant'
+    last_name: 'James'
   })
 
   if(player) {

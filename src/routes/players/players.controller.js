@@ -1,11 +1,11 @@
 const {
   getAllPlayers
 } = require('../../models/players.model');
-const { getPagination } = require('../../services/query');
+const { processQueryParams } = require('../../services/query');
 
 async function httpGetAllPlayers(req, res) {
-  const { skip, limit } = getPagination(req.query);
-  const players = await getAllPlayers(skip, limit)
+  const { skip, limit, search } = processQueryParams(req.query);
+  const players = await getAllPlayers(skip, limit, search)
   return res.status(200).json(players);
 }
 

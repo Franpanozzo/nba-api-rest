@@ -12,7 +12,7 @@ const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/teams'
 
 
 async function getAllTeams() {
-  return await getAllObjects(teamsDatabase, 'teamId', 0, 0);
+  return await getAllObjects(teamsDatabase, {}, 'teamId', 0, 0);
 }
 
 async function loadTeamsData() {

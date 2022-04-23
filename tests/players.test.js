@@ -27,5 +27,17 @@ describe('Players API', () => {
     .expect(200); 
   })
 
+  test('GET /players with a query param shoud return status 200 all the players in search', async () => {
+    const response = await request(app)
+    .get('/v1/players')
+    .query({
+      search: 'Harden'
+    })
+    .expect('Content-Type', /json/)
+    .expect(200); 
+
+    const player = response.body.shift(0); // Las query params filtran, por eso me devuelve un arreglo
+    expect(player.last_name).toBe('Harden');
+  })
 
 });

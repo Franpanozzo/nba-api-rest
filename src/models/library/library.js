@@ -21,8 +21,8 @@ async function saveInDatabase(database, filter, obj) {
   });
 }
 
-async function getAllObjects(database, fieldToSort, skip, limit) {
-  return await database.find({}, {
+async function getAllObjects(database, filter, fieldToSort, skip, limit) {
+  return await database.find(filter, {
     '__v': 0,
     '_id': 0
   })

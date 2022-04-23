@@ -1,7 +1,7 @@
 const DEFAULT_PAGE_NUMBER = 1
 const DEFAULT_PAGE_LIMIT = 20
 
-function getPagination(query) {
+function processQueryParams(query) {
   const page = Math.abs(query.page) || DEFAULT_PAGE_NUMBER;
   let limit = Math.abs(query.limit) || DEFAULT_PAGE_LIMIT;
   if (limit > 100) limit = DEFAULT_PAGE_LIMIT
@@ -9,10 +9,11 @@ function getPagination(query) {
 
   return {
     skip,
-    limit
+    limit,
+    search: query.search
   }
 }
 
 module.exports = {
-  getPagination
+  processQueryParams
 }
