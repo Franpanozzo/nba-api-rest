@@ -26,8 +26,8 @@ describe('Teams API', () => {
       .expect('Content-Type', /json/)
       .expect(200);
 
-    const teams = response.body;
-    expect(teams.length).toBe(30);
+    const team = response.body.shift();
+    expect(team.name).toBe('Hawks');
   }); 
 
   test('GET /teams/3 should respond with the Nets', async () => {
