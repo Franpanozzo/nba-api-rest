@@ -5,7 +5,7 @@ const {
 } = require('../../models/teams.model');
 
 async function httpGetAllTeams(req, res) {
-  res.status(200).json(await getAllTeams());
+  return res.status(200).json(await getAllTeams());
 }
 
 async function httpGetTeam(req, res) {
@@ -13,12 +13,12 @@ async function httpGetTeam(req, res) {
 
   const team = await teamWithId(teamId);
   if(!team) {
-    res.status(404).json({
+    return res.status(404).json({
       error: 'Team not found'
     });
-  }
+  } 
   
-  res.status(200).json(team);
+  return res.status(200).json(team);
 }
 
 module.exports = {

@@ -76,8 +76,6 @@ async function teamWithId(teamId) {
   });
 }
 
-
-
 module.exports = {
   getAllTeams,
   loadTeamsData,

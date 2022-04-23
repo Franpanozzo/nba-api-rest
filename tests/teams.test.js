@@ -9,16 +9,14 @@ const {
 
 require('dotenv').config();
 
-jest.setTimeout(100000);
-
 describe('Teams API', () => {
   beforeAll(async () => {
-    await mongoConnect();
+    await mongoConnect(process.env.MONGO_URL);
     await loadTeamsData();
   });
 
   afterAll(async () => {
-    await mongoDisconnect();
+    await mongoDisconnect(process.env.MONGO_URL);
   })
   
   test('GET /teams should respond status 200', async () => {
@@ -39,6 +37,13 @@ describe('Teams API', () => {
 
       const team = response.body;
       expect(team.name).toBe('Nets');
+  })
+
+  test('GET /teams/:teamId with unexisting teamId should respond status 404', async () => {
+    const response = await request(app)
+      .get('/v1/teams/40')
+      .expect('Content-Type', /json/)
+      .expect(404);
   })
  });
 
