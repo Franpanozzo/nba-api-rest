@@ -24,7 +24,7 @@ async function loadTeamsData() {
     console.log('Teams data already loaded!');
   }
   else {
-    await populate(BALL_DONT_LIE_URL, 'Teams', mapTeam);
+    await populate(BALL_DONT_LIE_URL, {}, 'Teams', mapTeam);
   }
 }
 

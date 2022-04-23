@@ -1,8 +1,8 @@
 const axios = require('axios');
 
-async function populate(url, data, mapDoc) {
+async function populate(url, params, data, mapDoc) {
   console.log(`Downloading ${data} data...`);
-  const response = await axios.get(url);
+  const response = await axios.get(url, params);
   // console.log(response.data.data);
   const teamsDocs = response.data.data;
   
@@ -12,6 +12,7 @@ async function populate(url, data, mapDoc) {
   }
 
   teamsDocs.forEach(mapDoc);
+  return response.data.meta;  // Los teams noo los usa, entonces que ni lo agarre cuando se retorna
 }
 
 async function saveInDatabase(database, filter, obj) {
