@@ -4,7 +4,8 @@ const teamsDatabase = require('./teams.mongo');
 const { 
   populate,
   saveInDatabase,
-  getAllObjects
+  getAllObjects,
+  findObject
 } = require('./library/library');
 
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/teams'
@@ -48,10 +49,7 @@ async function saveTeam(team) {
 }
 
 async function findTeam(filter) {
-  return await teamsDatabase.findOne(filter, {
-    '_id': 0,
-    '__v': 0,
-  });
+  return await findObject(teamsDatabase, filter);
 }
 
 async function teamWithId(teamId) {

@@ -28,8 +28,16 @@ async function getAllObjects(database, fieldToSort) {
   .sort(fieldToSort);
 }
 
+async function findObject(database, filter) {
+  return await database.findOne(filter, {
+    '_id': 0,
+    '__v': 0,
+  });
+}
+
 module.exports = {
   populate,
   saveInDatabase,
-  getAllObjects
+  getAllObjects,
+  findObject
 }
