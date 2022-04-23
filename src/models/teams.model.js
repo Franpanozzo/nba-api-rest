@@ -9,7 +9,8 @@ async function getAllTeams() {
   return await teamsDatabase.find({}, {
     '__v': 0,
     '_id': 0
-  });
+  })
+  .sort('teamId');
 }
 
 async function loadTeamsData() {
