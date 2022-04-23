@@ -21,12 +21,14 @@ async function saveInDatabase(database, filter, obj) {
   });
 }
 
-async function getAllObjects(database, fieldToSort) {
+async function getAllObjects(database, fieldToSort, skip, limit) {
   return await database.find({}, {
     '__v': 0,
     '_id': 0
   })
-  .sort(fieldToSort);
+  .sort(fieldToSort)
+  .skip(skip)
+  .limit(limit);
 }
 
 async function findObject(database, filter) {

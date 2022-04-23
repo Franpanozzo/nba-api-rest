@@ -11,8 +11,8 @@ const {
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/players'
 
 
-async function getAllPlayers() {
-  return await getAllObjects(playersDatabase, 'playerId');
+async function getAllPlayers(skip, limit) {
+  return await getAllObjects(playersDatabase, 'playerId', skip, limit);
 }
 
 async function loadPlayersData() {
@@ -31,7 +31,7 @@ async function loadPlayersData() {
 
 async function populateAllPlayers(pageNumber) {
   const metaData = await populate(BALL_DONT_LIE_URL, {
-    params: {
+    params: {  // Le pasamos los query params
       per_page: 100,
       page: pageNumber
     }
