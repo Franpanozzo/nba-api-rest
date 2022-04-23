@@ -1,5 +1,12 @@
 const axios = require('axios');
 
+const playersDatabase = require('./players.mongo');
+const { 
+  populate,
+  saveInDatabase,
+  getAllObjects
+} = require('./library/library');
+
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/players'
 
 const players = [
@@ -27,6 +34,31 @@ async function getAllPlayers() {
   }
 
   return playersDocs;
+}
+
+async function loadPlayersData() {
+  await populate(BALL_DONT_LIE_URL, 'Players', mapPlayer);
+}
+
+async function mapPlayer(playerDoc) {
+  const player = {
+    playerId: playerDoc.id,
+    first_name: playerDoc.first_name,
+    last_name: playerDoc.last_name,
+    position: playerDoc.position,
+    team: {
+      teamId: playerDoc.team.id,
+      full_name: playerDoc.team.id
+    }
+  }
+
+  await savePlayer(player);
+}
+
+async function savePlayer(player) {
+  await saveInDatabase(playersDatabase, {
+    playerId: player.playerId
+  }, player)
 }
 
 module.exports = {

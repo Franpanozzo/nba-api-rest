@@ -1,16 +1,17 @@
 const axios = require('axios');
 
 const teamsDatabase = require('./teams.mongo');
+const { 
+  populate,
+  saveInDatabase,
+  getAllObjects
+} = require('./library/library');
 
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/teams'
 
 
 async function getAllTeams() {
-  return await teamsDatabase.find({}, {
-    '__v': 0,
-    '_id': 0
-  })
-  .sort('teamId');
+  return await getAllObjects(teamsDatabase, 'teamId')
 }
 
 async function loadTeamsData() {
@@ -22,27 +23,11 @@ async function loadTeamsData() {
     console.log('Teams data already loaded!');
   }
   else {
-    await populateTeams();
+    await populate(BALL_DONT_LIE_URL, 'Teams', mapTeam);
   }
-}
-
-async function populateTeams() {
-  console.log('Downloading teams data...');
-  const response = await axios.get(BALL_DONT_LIE_URL);
-  // console.log(response.data.data);
-  const teamsDocs = response.data.data;
-  
-  if(response.status !== 200) {
-    console.log('Error with axios request:', response);
-    throw new Error('Teams data download failed');
-  }
-
-  teamsDocs.forEach(mapTeam);
 }
 
 async function mapTeam(teamDoc) {
-
-  console.log('Team id:', teamDoc.id);
   const team = {
     teamId: teamDoc.id,
     abbreviation: teamDoc.abbreviation,
@@ -57,11 +42,9 @@ async function mapTeam(teamDoc) {
 }
 
 async function saveTeam(team) {
-  await teamsDatabase.findOneAndUpdate({
+  await saveInDatabase(teamsDatabase, {
     full_name: team.full_name
-  }, team, {
-    upsert: true
-  });
+  }, team);
 }
 
 async function findTeam(filter) {
