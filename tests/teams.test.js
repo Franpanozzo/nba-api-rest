@@ -12,12 +12,12 @@ const {
 
 describe('Teams API', () => {
   beforeAll(async () => {
-    await mongoConnect();
+    await mongoConnect(process.env.MONGO_URL);
     await loadTeamsData();
   });
 
   afterAll(async () => {
-    await mongoDisconnect();
+    await mongoDisconnect(process.env.MONGO_URL);
   })
   
   test('GET /teams should respond status 200', async () => {
@@ -47,7 +47,3 @@ describe('Teams API', () => {
       .expect(404);
   })
  });
-
-// describe('Teams model', () => {
-
-// });
