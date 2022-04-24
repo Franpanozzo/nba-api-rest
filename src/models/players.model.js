@@ -7,9 +7,10 @@ const {
   getAllObjects,
   findObject
 } = require('./library/library');
+const { findTeam } = require('./teams.model');
 
 const BALL_DONT_LIE_URL = 'https://balldontlie.io/api/v1/players'
-
+const POSITIONS = ["G","F","C","G-F","F-C"]
 
 async function getAllPlayers(skip, limit, search) {
   let filter;
@@ -81,9 +82,33 @@ async function findPlayer(filter) {
   return await findObject(playersDatabase, filter);
 }
 
-function validatePlayer(player) {
-  // if(!player.first_name || !player.last_name || player.position)
+async function validatePlayer(player) {
+
+  if(typeof player !== 'object') return 'We recieve a JSON to post a player'
+
+  if(!player.first_name || !player.last_name || !player.position || !player.team.teamId || !player.team.full_name) {
+    return 'Missing required player properties';
+  }
+
+  if(Object.keys(player).length > 4 || Object.keys(player.team).length > 2) {
+    return 'Unnecesary properties';
+  }
+
+  if(validateString(player.first_name) || validateString(player.last_name) || validateString(player.team.full_name)) {
+    return 'All the fields should be strings, except for the teamId';
+  }
+
+  if(!POSITIONS.includes(player.position)) return `Invalid position - Choose one: ${POSITIONS}`;
+
+  if(!(await findTeam({ teamId: player.team.teamId }))) {
+    return 'Not matching team was found in the Id';
+  } 
+    
 }
+
+function validateString(obj) {
+  return typeof obj !== 'string';
+} 
 
 module.exports = {
   getAllPlayers,

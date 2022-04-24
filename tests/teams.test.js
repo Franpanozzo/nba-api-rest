@@ -14,7 +14,7 @@ jest.setTimeout(1000000);
 
 describe('Teams API', () => {
   beforeAll(async () => {
-    await mongoConnect(process.env.MONGO_URL);
+    await mongoConnect(process.env.MONGO_TEST_URL);
     await loadTeamsData();
     await loadPlayersData();
   });

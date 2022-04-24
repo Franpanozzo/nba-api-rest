@@ -14,11 +14,21 @@ async function httpAddNewPlayer(req, res) {
   const player = req.body;
   let errorMessage = null;
 
-  if(errorMessage = validatePlayer(player)) {
-    res.status(400).json({
+  if(errorMessage = await validatePlayer(player)) {
+    return res.status(400).json({
       error: errorMessage
     })
   }
+
+  return res.status(201).json({
+    first_name: "Bronny",
+    last_name: "James",
+    position: "G",
+    team: {
+      teamId: 26,
+      full_name: "Sacramento Kings"
+    }
+    });
 }
 
 module.exports = {
