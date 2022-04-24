@@ -81,7 +81,12 @@ async function findPlayer(filter) {
   return await findObject(playersDatabase, filter);
 }
 
+function validatePlayer(player) {
+  // if(!player.first_name || !player.last_name || player.position)
+}
+
 module.exports = {
   getAllPlayers,
-  loadPlayersData
+  loadPlayersData,
+  validatePlayer
 }

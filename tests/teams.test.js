@@ -20,7 +20,7 @@ describe('Teams API', () => {
   });
 
   afterAll(async () => {
-    await mongoDisconnect(process.env.MONGO_URL);
+    await mongoDisconnect();
   })
   
   test('GET /teams should respond status 200', async () => {

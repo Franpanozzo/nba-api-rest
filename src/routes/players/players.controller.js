@@ -1,5 +1,6 @@
 const {
-  getAllPlayers
+  getAllPlayers,
+  validatePlayer
 } = require('../../models/players.model');
 const { processQueryParams } = require('../../services/query');
 
@@ -9,6 +10,18 @@ async function httpGetAllPlayers(req, res) {
   return res.status(200).json(players);
 }
 
+async function httpAddNewPlayer(req, res) {
+  const player = req.body;
+  let errorMessage = null;
+
+  if(errorMessage = validatePlayer(player)) {
+    res.status(400).json({
+      error: errorMessage
+    })
+  }
+}
+
 module.exports = {
-  httpGetAllPlayers
+  httpGetAllPlayers,
+  httpAddNewPlayer
 }
