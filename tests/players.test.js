@@ -10,6 +10,7 @@ const {
   mongoDisconnect
 } = require('../src/services/mongo');
 
+jest.setTimeout(1000000);
 
 describe('Players API', () => {
   beforeAll(async () => {
