@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const app = require('../src/app');
 const { loadTeamsData } = require('../src/models/teams.model');
+const { loadPlayersData } = require('../src/models/players.model');
 const {
   mongoConnect,
   mongoDisconnect
@@ -14,6 +15,7 @@ describe('Teams API', () => {
   beforeAll(async () => {
     await mongoConnect(process.env.MONGO_URL);
     await loadTeamsData();
+    await loadPlayersData();
   });
 
   afterAll(async () => {
