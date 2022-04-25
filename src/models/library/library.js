@@ -1,3 +1,4 @@
+// Here there is all the code that is shared from all the models, so our code stays DRY (dont repeat yourself)
 const axios = require('axios');
 
 async function populate(url, params, data, mapDoc) {
