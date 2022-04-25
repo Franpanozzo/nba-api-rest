@@ -82,6 +82,24 @@ async function findPlayer(filter) {
   return await findObject(playersDatabase, filter);
 }
 
+async function addNewPlayer(player) {
+  const newPlayerId = await getLatestPlayerNumber() + 1;
+
+  playerWithId = {
+    ...player,
+    playerId: newPlayerId
+  }
+  await savePlayer(playerWithId);
+}
+
+async function getLatestPlayerNumber() {
+  const latestPlayer = await playersDatabase
+    .findOne()
+    .sort('-playerId');
+  
+  return latestPlayer.playerId;
+}
+
 async function validatePlayer(player) {
 
   if(typeof player !== 'object') return 'We recieve a JSON to post a player'
@@ -103,7 +121,6 @@ async function validatePlayer(player) {
   if(!(await findTeam({ teamId: player.team.teamId }))) {
     return 'Not matching team was found in the Id';
   } 
-    
 }
 
 function validateString(obj) {
@@ -113,5 +130,6 @@ function validateString(obj) {
 module.exports = {
   getAllPlayers,
   loadPlayersData,
-  validatePlayer
+  validatePlayer,
+  addNewPlayer
 }

@@ -1,6 +1,7 @@
 const {
   getAllPlayers,
-  validatePlayer
+  validatePlayer,
+  addNewPlayer
 } = require('../../models/players.model');
 const { processQueryParams } = require('../../services/query');
 
@@ -20,15 +21,8 @@ async function httpAddNewPlayer(req, res) {
     })
   }
 
-  return res.status(201).json({
-    first_name: "Bronny",
-    last_name: "James",
-    position: "G",
-    team: {
-      teamId: 26,
-      full_name: "Sacramento Kings"
-    }
-    });
+  await addNewPlayer(player);
+  return res.status(201).json(player);
 }
 
 module.exports = {
