@@ -10,7 +10,7 @@ const {
   mongoDisconnect
 } = require('../src/services/mongo');
 
-jest.setTimeout(1000000);
+jest.setTimeout(7000);
 
 describe('Players API', () => {
   beforeAll(async () => {
@@ -41,7 +41,7 @@ describe('Players API', () => {
       .expect('Content-Type', /json/)
       .expect(200); 
   
-      const player = response.body.shift(0); // Las query params filtran, por eso me devuelve un arreglo
+      const player = response.body.data.shift(0); // Las query params filtran, por eso me devuelve un arreglo
       expect(player.last_name).toBe('Harden');
     })
 

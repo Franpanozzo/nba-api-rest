@@ -26,7 +26,12 @@ async function getAllPlayers(skip, limit, search) {
     filter = {}
   }
 
-  return await getAllObjects(playersDatabase, filter , 'playerId', skip, limit);
+  const players = await getAllObjects(playersDatabase, filter , 'playerId', skip, limit);
+  const total_count = playersDatabase.estimatedDocumentCount();
+  return {
+    players,
+    total_count
+  }
 }
 
 async function loadPlayersData() {

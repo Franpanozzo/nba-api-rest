@@ -10,6 +10,7 @@ function processQueryParams(query) {
   return {
     skip,
     limit,
+    page,
     search: query.search
   }
 }

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Franpanozzo/nba-api-rest#readme",
   "dependencies": {
     "axios": "^0.26.1",
+    "circular-json": "^0.5.9",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.3.0",
