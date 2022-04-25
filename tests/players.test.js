@@ -59,6 +59,7 @@ describe('Players API', () => {
           full_name: "Sacramento Kings"
         }
       };
+
       const response = await request(app)
       .post('/v1/players')
       .send(playerData)
@@ -170,6 +171,48 @@ describe('Players API', () => {
   
       expect(response.body).toStrictEqual({
         error: 'Not matching team was found in the Id'
+      });
+    })
+
+  })
+
+  describe('DELETE /players', () => {
+
+    test('DELETE /players should response 404 when tryng to delete an unexisting player', async () => {
+      const response = await request(app)
+      .delete('/v1/players/40000000')
+      .expect('Content-Type', /json/)
+      .expect(404);
+    })
+
+    test('DELETE /players should return 200 when when tring to delete someone and succesfully delete it', async () => {
+      const playerData = {
+        first_name: "Bronny",
+        last_name: "James",
+        position: "G",
+        team: {
+          teamId: 26,
+          full_name: "Sacramento Kings"
+        }
+      };
+
+      const response = await request(app)
+      .get('/v1/players')
+      .query({
+        search: 'Bronny'
+      })
+      .expect('Content-Type', /json/)
+      .expect(200); 
+
+      const playerId = response.body.shift(0).playerId;
+
+      const response2 = await request(app)
+      .delete(`/v1/players/${playerId}`)
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+      expect(response2.body).toStrictEqual({
+        ok: `Player ${playerId} succesfully deleted`
       });
     })
   })

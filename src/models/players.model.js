@@ -100,6 +100,20 @@ async function getLatestPlayerNumber() {
   return latestPlayer.playerId;
 }
 
+async function existsPlayerWithId(playerId) {
+  return await findPlayer({
+    playerId: playerId
+  })
+}
+
+async function deletePlayer(playerId) {
+  const playerDeleted = await playersDatabase.deleteOne({
+    playerId: playerId
+  })
+
+  if(playerDeleted.deletedCount !== 1) throw new Error(`Player ${playerId} not deleted`);
+}
+
 async function validatePlayer(player) {
 
   if(typeof player !== 'object') return 'We recieve a JSON to post a player'
@@ -131,5 +145,7 @@ module.exports = {
   getAllPlayers,
   loadPlayersData,
   validatePlayer,
-  addNewPlayer
+  addNewPlayer,
+  existsPlayerWithId,
+  deletePlayer
 }
