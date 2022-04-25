@@ -28,7 +28,7 @@ async function httpAddNewPlayer(req, res) {
 }
 
 async function httpDeletePlayer(req, res) {
-  const playerId = req.playerId
+  const playerId = +req.params.playerId;
 
   const existsPlayer = await existsPlayerWithId(playerId);
   if(!existsPlayer) {

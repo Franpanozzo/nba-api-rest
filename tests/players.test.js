@@ -204,9 +204,7 @@ describe('Players API', () => {
       .expect('Content-Type', /json/)
       .expect(200); 
 
-      console.log('Response:', response.body);
       const playerId = response.body.shift(0).playerId;
-      console.log('Player id to delete:', playerId);
 
       const response2 = await request(app)
       .delete(`/v1/players/${playerId}`)
