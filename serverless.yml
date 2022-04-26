@@ -1,0 +1,23 @@
+org: franpanozzo
+app: aws-nba-api
+service: nba-api-rest
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 512
+  stage: dev
+  timeout: 15
+  region: us-east-1
+
+functions:
+  handler:
+    handler: handler.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    environment:
+      PORT: 8000
+      MONGO_URL: mongodb+srv://nba-api:KttecPDmjdsp6PQq@nbarestapi.kihqp.mongodb.net/nba?retryWrites=true&w=majority
+      MONGO_TEST_URL: mongodb+srv://nba-api-test:qSIg51ZdNdHeemaB@nbarestapitest.7jh5l.mongodb.net/nbaTest?retryWrites=true&w=majority
