@@ -62,6 +62,7 @@ describe('Players API', () => {
 
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(201); 
@@ -80,6 +81,7 @@ describe('Players API', () => {
       };
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(400); 
@@ -102,6 +104,7 @@ describe('Players API', () => {
       };
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(400); 
@@ -123,6 +126,7 @@ describe('Players API', () => {
       };
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(400); 
@@ -144,6 +148,7 @@ describe('Players API', () => {
       };
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(400); 
@@ -165,6 +170,7 @@ describe('Players API', () => {
       };
       const response = await request(app)
       .post('/v1/players')
+      .set('x-api-key', process.env.API_KEY)
       .send(playerData)
       .expect('Content-Type', /json/)
       .expect(400); 
@@ -181,6 +187,7 @@ describe('Players API', () => {
     test('DELETE /players should response 404 when tryng to delete an unexisting player', async () => {
       const response = await request(app)
       .delete('/v1/players/40000000')
+      .set('x-api-key', process.env.API_KEY)
       .expect('Content-Type', /json/)
       .expect(404);
     })
@@ -208,6 +215,7 @@ describe('Players API', () => {
 
       const response2 = await request(app)
       .delete(`/v1/players/${playerId}`)
+      .set('x-api-key', process.env.API_KEY)
       .expect('Content-Type', /json/)
       .expect(200);
 
