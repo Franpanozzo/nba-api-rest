@@ -5,6 +5,7 @@ const {
 } = require('../../models/teams.model');
 
 async function httpGetAllTeams(req, res) {
+  console.log('Estoy entrando acaaa')
   return res.status(200).json(await getAllTeams());
 }
 

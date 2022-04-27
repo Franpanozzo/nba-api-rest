@@ -9,6 +9,7 @@ const { processQueryParams } = require('../../services/query');
 
 async function httpGetAllPlayers(req, res) {
   const { skip, limit, search } = processQueryParams(req.query);
+  console.log(skip, limit, search);
   const players = await getAllPlayers(skip, limit, search)
   return res.status(200).json(players);
 }

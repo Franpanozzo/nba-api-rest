@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/v1', api);
 app.use('/*', (req, res) => {
   res.status(500).json({
-    in: 'developmente' 
+    in: 'development' 
   })
 })
 

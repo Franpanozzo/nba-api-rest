@@ -9,7 +9,7 @@ mongoose.connection.once('error', (err) => {
 });
 
 async function mongoConnect(mongoUri) {
-  await mongoose.connect(mongoUri);
+  return await mongoose.connect(mongoUri);
 }
 
 async function mongoDisconnect() {
