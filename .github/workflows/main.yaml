@@ -9,6 +9,7 @@ jobs:
     env:
       CI: true
       MONGO_TEST_URL: mongodb://localhost/nasa
+      API_KEY: ${{ secrets.API_KEY }}
     strategy:
       matrix:
         node-version: [14.x, 16.x]

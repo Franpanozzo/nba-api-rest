@@ -14,6 +14,11 @@ async function httpGetAllPlayers(req, res) {
 }
 
 async function httpAddNewPlayer(req, res) {
+  if(req.headers['x-api-key'] !== process.env.API_KEY) {
+    return res.status(403).json({
+      forbidden: 'You need a special API KEY to do this operation'
+    })
+  }
   const player = req.body;
   let errorMessage = null;
 
@@ -28,6 +33,11 @@ async function httpAddNewPlayer(req, res) {
 }
 
 async function httpDeletePlayer(req, res) {
+  if(req.headers['x-api-key'] !== process.env.API_KEY) {
+    return res.status(403).json({
+      forbidden: 'You need a special API KEY to do this operation'
+    })
+  }
   const playerId = +req.params.playerId;
 
   const existsPlayer = await existsPlayerWithId(playerId);

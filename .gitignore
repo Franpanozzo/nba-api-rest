@@ -2,6 +2,4 @@ node_modules
 .env
 .vscode
 jspm_packages
-
-# Serverless directories
 .serverless
