@@ -26,7 +26,6 @@ async function getAllPlayers(skip, limit, search) {
     filter = {}
   }
 
-  console.log(filter);
   return await getAllObjects(playersDatabase, filter , 'playerId', skip, limit);
 }
 

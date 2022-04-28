@@ -23,8 +23,6 @@ async function saveInDatabase(database, filter, obj) {
 }
 
 async function getAllObjects(database, filter, fieldToSort, skip, limit) {
-  console.log('Estoy entrando acaaa 2')
-  console.log(fieldToSort, skip, limit);
   return await database.find(filter, {
     '__v': 0,
     '_id': 0

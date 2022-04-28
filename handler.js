@@ -10,14 +10,10 @@ async function esperarDB() {
 }
 
 async function conectarDB() {
-  console.log('Conectamo');
   await esperarDB();
-  console.log('Listooo');
 }
 
-console.log('Conectamo perri')
-
-module.exports.handler = (conectarDB()) ? serverless(app) : 'Neverland';
+module.exports.handler = (conectarDB()) ? serverless(app) : null;
 
 // module.exports.handler = async (event) => {
 //   await mongoConnect(process.env.MONGO_URL);

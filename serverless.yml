@@ -7,6 +7,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   memorySize: 512
+  stage: prod
   timeout: 15
   region: us-east-1
 
