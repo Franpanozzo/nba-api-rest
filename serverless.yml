@@ -1,0 +1,24 @@
+org: franpanozzo
+app: aws-nba-api
+service: nba-api-rest
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 512
+  stage: prod
+  timeout: 15
+  region: us-east-1
+
+functions:
+  handler:
+    handler: handler.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    environment:
+      PORT: 8000
+
+plugins:
+  - serverless-offline

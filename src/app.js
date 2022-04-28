@@ -1,5 +1,5 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
 
 const api = require('./routes/api');
 
@@ -10,8 +10,10 @@ app.use(morgan('combined'));
 app.use(express.json());
 
 app.use('/v1', api);
-// app.use('/*', (req, res) => {
-//   res.status(404)
-// })
+app.use('/*', (req, res) => {
+  res.status(500).json({
+    in: 'development' 
+  })
+})
 
 module.exports = app;
