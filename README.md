@@ -106,7 +106,7 @@ Open Source REST API for the best league in the world!
   - #### URL Parameters
   | Parameter | Description  |
   |----------|--------------|
-  | ID        | ID oh the team to retrieve |
+  | ID        | ID oF the team to retrieve |
   
   
   
