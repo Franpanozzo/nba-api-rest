@@ -35,4 +35,4 @@ Open Source REST API for the best league in the world!
   <br />
   <br />
 
-![Postman](https://img.shields.io/badge/OPEN_WITH_POSTMAN-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/16013993-caf084a3-b439-4b43-9b9f-67a9fcf1d298?action=collection%2Ffork&collection-url=entityId%3D16013993-caf084a3-b439-4b43-9b9f-67a9fcf1d298%26entityType%3Dcollection%26workspaceId%3Daa0bb4e2-e714-4968-bd39-d9d56f9c0f3d)
