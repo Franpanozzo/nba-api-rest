@@ -64,15 +64,8 @@ Open Source REST API for the best league in the world!
   `POST https://klqn0hf9bk.execute-api.us-east-1.amazonaws.com/prod/v1/players`
   
   - #### Body example
-  `{
-    "first_name": "Zaire",
-    "last_name": "Wade",
-    "position": "G",
-    "team": {
-        "teamId": 29,
-        "full_name": "Utah Jazz"
-      }
-  }`
+  ![image](https://user-images.githubusercontent.com/62455934/165942148-d881a7c3-0595-461f-a5b8-f21838f36274.png)
+
   
   - #### Headers
   `x-api-key: secretValue`
