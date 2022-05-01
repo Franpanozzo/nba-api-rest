@@ -53,7 +53,7 @@ Open Source REST API for the best league in the world!
   
 | Parameter               | Default   | Description  |
 |-------------------------|-----------|--------------|
-| page       |0 | The page number used for pagination |
+| page       |1 | The page number used for pagination |
 | limit      | 20 | the number of results returned per call, used for pagination. Max 100    | 
 | search   | | Used to filter players based on their name. For example, ?search=davis will return players that have 'davis' in their first or last name.  |
 
